@@ -46,5 +46,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>Let&apos;s dance</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Let&apos;s dance</string>
 </dict>
 </plist>

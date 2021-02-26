@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6B8402E25E9BE0D00140DD3 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8402D25E9BE0D00140DD3 /* LibraryViewModel.swift */; };
 		A6EA9A9925E98B6D00970123 /* MyMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EA9A9825E98B6D00970123 /* MyMusicApp.swift */; };
-		A6EA9A9B25E98B6D00970123 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EA9A9A25E98B6D00970123 /* ContentView.swift */; };
+		A6EA9A9B25E98B6D00970123 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EA9A9A25E98B6D00970123 /* LibraryView.swift */; };
 		A6EA9A9D25E98B6D00970123 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6EA9A9C25E98B6D00970123 /* Assets.xcassets */; };
 		A6EA9AA025E98B6D00970123 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6EA9A9F25E98B6D00970123 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A6B8402D25E9BE0D00140DD3 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		A6EA9A9525E98B6D00970123 /* MyMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6EA9A9825E98B6D00970123 /* MyMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMusicApp.swift; sourceTree = "<group>"; };
-		A6EA9A9A25E98B6D00970123 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A6EA9A9A25E98B6D00970123 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		A6EA9A9C25E98B6D00970123 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6EA9A9F25E98B6D00970123 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A6EA9AA125E98B6D00970123 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -33,6 +35,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A6B8402A25E9BDCF00140DD3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A6EA9A9A25E98B6D00970123 /* LibraryView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A6B8402B25E9BDD500140DD3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A6B8402D25E9BE0D00140DD3 /* LibraryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A6B8402C25E9BDDF00140DD3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A6EA9A8C25E98B6C00970123 = {
 			isa = PBXGroup;
 			children = (
@@ -53,7 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				A6EA9A9825E98B6D00970123 /* MyMusicApp.swift */,
-				A6EA9A9A25E98B6D00970123 /* ContentView.swift */,
+				A6B8402C25E9BDDF00140DD3 /* Models */,
+				A6B8402B25E9BDD500140DD3 /* ViewModels */,
+				A6B8402A25E9BDCF00140DD3 /* Views */,
 				A6EA9A9C25E98B6D00970123 /* Assets.xcassets */,
 				A6EA9AA125E98B6D00970123 /* Info.plist */,
 				A6EA9A9E25E98B6D00970123 /* Preview Content */,
@@ -138,7 +165,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6EA9A9B25E98B6D00970123 /* ContentView.swift in Sources */,
+				A6EA9A9B25E98B6D00970123 /* LibraryView.swift in Sources */,
+				A6B8402E25E9BE0D00140DD3 /* LibraryViewModel.swift in Sources */,
 				A6EA9A9925E98B6D00970123 /* MyMusicApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
