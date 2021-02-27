@@ -9,8 +9,6 @@ import SwiftUI
 import StoreKit
 
 struct LibraryView: View {
-	let dev = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkszWUc5S1AzSEYifQ.eyJpYXQiOjE2MTQzNzQ2MjAsImV4cCI6MTYyOTkyNjYyMCwiaXNzIjoiNVlORDZVOTg0MyJ9.EsNTjJrj4Uye6ji5e-Wxc9PKYrWGJv9L5AcaazLtNavBpuURbALsYAi0GGBd0aTVWjykeVc8X9WGq2_l4jPFcA"
-
 	var body: some View {
 		Text("Hello, world!")
 				.padding()
