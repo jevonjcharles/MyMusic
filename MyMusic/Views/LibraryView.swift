@@ -9,46 +9,76 @@ import SwiftUI
 import StoreKit
 
 struct LibraryView: View {
-	let dev = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkszWUc5S1AzSEYifQ.eyJpYXQiOjE2MTQzNzQ2MjAsImV4cCI6MTYyOTkyNjYyMCwiaXNzIjoiNVlORDZVOTg0MyJ9.EsNTjJrj4Uye6ji5e-Wxc9PKYrWGJv9L5AcaazLtNavBpuURbALsYAi0GGBd0aTVWjykeVc8X9WGq2_l4jPFcA"
-
+	@StateObject var libraryViewModel = LibraryViewModel()
+	
 	var body: some View {
-		Text("Hello, world!")
-				.padding()
-			.onAppear {
-				SKCloudServiceController.requestAuthorization { (status: SKCloudServiceAuthorizationStatus) in
-					switch status {
-						case .notDetermined:
-							print("NOT DETERMINED")
-						case .denied:
-							print("DENIED")
-						case .restricted:
-							print("RESTRICTED")
-						case .authorized:
-							print("AUTHORIZED")
-							next()
-						@unknown default:
-							print("UNKNOWN")
-					}
+		NavigationView {
+			List {
+				NavigationLink(destination: Text("Playlists")) {
+					LibraryListItem(imageName: "music.note.list", text: "Playlists")
 				}
-			}
-	}
 
-	private func next() {
-		let cont = SKCloudServiceController()
-		cont.requestUserToken(forDeveloperToken: dev) { (userToken: String? , error: Error?) in
-			if let error = error {
-				print("ERROR: \(error.localizedDescription)")
-			} else if let userToken = userToken {
-				print(userToken)
-			} else {
-				print("###\(#function)UNKNOWN")
+				NavigationLink(destination: Text("Artists")) {
+					LibraryListItem(imageName: "music.mic", text: "Artists")
+				}
+
+				NavigationLink(destination: Text("Albums")) {
+					LibraryListItem(imageName: "rectangle.stack", text: "Albums")
+				}
+
+				NavigationLink(destination: Text("Songs")) {
+					LibraryListItem(imageName: "music.note", text: "Songs")
+				}
+
+				NavigationLink(destination: Text("Genres")) {
+					LibraryListItem(imageName: "guitars", text: "Genres")
+				}
+
+				NavigationLink(destination: Text("Downloaded")) {
+					LibraryListItem(imageName: "arrow.down.circle", text: "Downloaded")
+				}
+
+				Text("Recently Added")
+					.font(.title3)
+					.fontWeight(.bold)
+					.padding(.top, 15)
 			}
+			.navigationTitle("Library")
 		}
 	}
 }
 
-struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		LibraryView()
+struct LibraryListItem: View {
+	var imageName: String
+	var text: String
+
+	var body: some View {
+		HStack {
+			Image(systemName: imageName)
+				.font(.title3)
+				.frame(width: 30, height: 10, alignment: .center)
+				.foregroundColor(.red)
+			Text(text)
+				.foregroundColor(.primary)
+		}
+	}
+}
+
+struct ListSeparatorStyle: ViewModifier {
+
+	let style: UITableViewCell.SeparatorStyle
+
+	func body(content: Content) -> some View {
+		content
+			.onAppear() {
+				UITableView.appearance().separatorStyle = self.style
+			}
+	}
+}
+
+extension View {
+
+	func listSeparatorStyle(style: UITableViewCell.SeparatorStyle) -> some View {
+		ModifiedContent(content: self, modifier: ListSeparatorStyle(style: style))
 	}
 }

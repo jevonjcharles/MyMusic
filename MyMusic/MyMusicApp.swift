@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct MyMusicApp: App {
-    var body: some Scene {
-        WindowGroup {
-					LibraryView()
-        }
-    }
+
+	var body: some Scene {
+		WindowGroup {
+			AppView()
+		}
+	}
 }
