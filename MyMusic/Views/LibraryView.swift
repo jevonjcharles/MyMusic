@@ -10,45 +10,48 @@ import StoreKit
 
 struct LibraryView: View {
 	@StateObject var libraryViewModel = LibraryViewModel()
-	
+
+	private var menuItems = [
+		("Playlists", "music.note.list"),
+		("Artists", "music.mic"),
+		("Albums", "rectangle.stack"),
+		("Songs", "music.note"),
+		("Genres", "guitars"),
+		("Downloaded", "arrow.down.circle")
+	]
+
+	private var columns: [GridItem] = [
+		GridItem(.fixed(100), spacing: 16),
+		GridItem(.fixed(100), spacing: 16)
+	]
+
 	var body: some View {
 		NavigationView {
 			List {
-				NavigationLink(destination: Text("Playlists")) {
-					LibraryListItem(imageName: "music.note.list", text: "Playlists")
+				ForEach(menuItems, id: \.self.0) { item in
+					NavigationLink(destination: Text(item.0)) {
+						LibraryMenuItem(imageName: item.1, text: item.0)
+					}
 				}
 
-				NavigationLink(destination: Text("Artists")) {
-					LibraryListItem(imageName: "music.mic", text: "Artists")
-				}
-
-				NavigationLink(destination: Text("Albums")) {
-					LibraryListItem(imageName: "rectangle.stack", text: "Albums")
-				}
-
-				NavigationLink(destination: Text("Songs")) {
-					LibraryListItem(imageName: "music.note", text: "Songs")
-				}
-
-				NavigationLink(destination: Text("Genres")) {
-					LibraryListItem(imageName: "guitars", text: "Genres")
-				}
-
-				NavigationLink(destination: Text("Downloaded")) {
-					LibraryListItem(imageName: "arrow.down.circle", text: "Downloaded")
-				}
-
-				Text("Recently Added")
-					.font(.title3)
-					.fontWeight(.bold)
-					.padding(.top, 15)
+//				LazyVGrid(columns: columns, alignment: .center, spacing: 16, pinnedViews: [.sectionHeaders]) {
+//					Section(header: Text("Recently Added")
+//										.font(.title3)
+//										.fontWeight(.bold)
+//										.padding(.top, 15)
+//					) {
+//						ForEach(0...10, id: \.self) { index in
+//							Color.blue.frame(width: 100, height: 100, alignment: .center)
+//						}
+//					}
+//				}
 			}
 			.navigationTitle("Library")
 		}
 	}
 }
 
-struct LibraryListItem: View {
+struct LibraryMenuItem: View {
 	var imageName: String
 	var text: String
 
@@ -64,21 +67,8 @@ struct LibraryListItem: View {
 	}
 }
 
-struct ListSeparatorStyle: ViewModifier {
-
-	let style: UITableViewCell.SeparatorStyle
-
-	func body(content: Content) -> some View {
-		content
-			.onAppear() {
-				UITableView.appearance().separatorStyle = self.style
-			}
-	}
-}
-
-extension View {
-
-	func listSeparatorStyle(style: UITableViewCell.SeparatorStyle) -> some View {
-		ModifiedContent(content: self, modifier: ListSeparatorStyle(style: style))
+struct LibraryView_Previews: PreviewProvider {
+	static var previews: some View {
+		LibraryView()
 	}
 }

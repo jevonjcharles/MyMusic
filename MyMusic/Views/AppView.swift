@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct AppView: View {
-	@StateObject private var userTokenViewModel: UserTokenViewModel
+	@StateObject private var musicKitViewModel: MusicKitViewModel
 	@StateObject private var alertViewModel: AlertViewModel
 
 	init() {
 		let alertViewModel = AlertViewModel()
-		let userTokenViewModel = StateObject(wrappedValue: UserTokenViewModel(alertViewModel: alertViewModel))
-		_userTokenViewModel = userTokenViewModel
+		let musicKitViewModel = StateObject(wrappedValue: MusicKitViewModel(alertViewModel: alertViewModel))
+		_musicKitViewModel = musicKitViewModel
 		_alertViewModel = StateObject(wrappedValue: alertViewModel)
 	}
 
@@ -22,9 +22,9 @@ struct AppView: View {
 		TranslucentTabView {
 			LibraryView()
 		}
-		.alert(isPresented: $alertViewModel.isPresented, content: {
+		.alert(isPresented: $alertViewModel.isPresented) {
 			alertViewModel.alert
-		})
+		}
 	}
 }
 
