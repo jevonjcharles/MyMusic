@@ -21,20 +21,18 @@ struct TranslucentTabView<Content: View>: View {
 
 				VStack {
 					Spacer()
-					(colorScheme == .dark ? Color.black : Color.white)
+					VisualEffectView(effect: UIBlurEffect(style: colorScheme == .light ? .systemMaterialLight : .prominent))
 						.frame(height: 80)
-						.blur(radius: 0.5)
-						.opacity(colorScheme == .dark ? 0.9 : 0.96)
 						.overlay(
 							Bar()
-							.padding(.horizontal, 25)
-							.padding(.vertical, 8)
-							.foregroundColor(.red)
-							.frame(height: 80)
+								.padding(.horizontal, 25)
+								.padding(.vertical, 8)
+								.foregroundColor(.red)
+								.frame(height: 80)
 						)
-				}			.ignoresSafeArea()
-
+				}
 			}
+			.ignoresSafeArea()
     }
 }
 
@@ -54,21 +52,31 @@ struct TranslucentItem: View {
 }
 
 struct Bar: View {
+	var imageNames = [
+		("play.circle.fill", "Listen Now"),
+		("square.grid.2x2.fill", "Browse"),
+		("dot.radiowaves.left.and.right", "Radio"),
+		("rectangle.stack.fill", "Library"),
+		("magnifyingglass", "Search")
+	]
 
 	var body: some View {
 		VStack {
-			HStack(alignment: .top) {
-				TranslucentItem(imageName: "play.circle.fill", text: "Listen Now")
-				Spacer()
-				TranslucentItem(imageName: "square.grid.2x2.fill", text: "Browse")
-				Spacer()
-				TranslucentItem(imageName: "dot.radiowaves.left.and.right", text: "Radio")
-				Spacer()
-				TranslucentItem(imageName: "rectangle.stack.fill", text: "Library")
-				Spacer()
-				TranslucentItem(imageName: "magnifyingglass", text: "Search")
+			HStack(alignment: .lastTextBaseline) {
+				ForEach(imageNames, id: \.0) { imageName in
+					TranslucentItem(imageName: imageName.0, text: imageName.1)
+					if imageName.0 != imageNames[4].0 {
+						Spacer()
+					}
+				}
 			}
 			Spacer()
 		}
 	}
+}
+
+struct VisualEffectView: UIViewRepresentable {
+	var effect: UIVisualEffect?
+	func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
+	func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
 }

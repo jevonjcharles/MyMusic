@@ -7,8 +7,10 @@
 
 import SwiftUI
 import StoreKit
+import MediaPlayer
 
 struct LibraryView: View {
+//	@EnvironmentObject var musicKitService: MusicKitService
 	@StateObject var libraryViewModel = LibraryViewModel()
 
 	private var menuItems = [
@@ -21,8 +23,8 @@ struct LibraryView: View {
 	]
 
 	private var columns: [GridItem] = [
-		GridItem(.fixed(100), spacing: 16),
-		GridItem(.fixed(100), spacing: 16)
+		GridItem(.fixed(180), spacing: 16),
+		GridItem(.fixed(180), spacing: 16)
 	]
 
 	var body: some View {
@@ -34,20 +36,32 @@ struct LibraryView: View {
 					}
 				}
 
-//				LazyVGrid(columns: columns, alignment: .center, spacing: 16, pinnedViews: [.sectionHeaders]) {
-//					Section(header: Text("Recently Added")
-//										.font(.title3)
-//										.fontWeight(.bold)
-//										.padding(.top, 15)
-//					) {
-//						ForEach(0...10, id: \.self) { index in
-//							Color.blue.frame(width: 100, height: 100, alignment: .center)
-//						}
-//					}
-//				}
+				LazyVGrid(columns: columns, alignment: .leading, spacing: 16, pinnedViews: [.sectionHeaders]) {
+					Section(header: Text("Recently Added")
+														.font(.title3)
+														.fontWeight(.bold)
+														.padding(.top, 15)
+					) {
+						ForEach(libraryViewModel.recentlyAdded, id: \.id) { mediaItem in
+							VStack(alignment: .leading) {
+								Color.gray.frame(width: 180, height: 180, alignment: .center)
+									.cornerRadius(8)
+
+								Text(mediaItem.title)
+									.lineLimit(1)
+									.font(.body)
+								Text(mediaItem.artist)
+									.font(.body)
+							}
+							.foregroundColor(.primary)
+						}
+					}
+				}
+				.padding(.bottom, 50)
 			}
-			.navigationTitle("Library")
+			.navigationTitle(Text("Library"))
 		}
+		.navigationViewStyle(StackNavigationViewStyle())
 	}
 }
 
@@ -59,16 +73,11 @@ struct LibraryMenuItem: View {
 		HStack {
 			Image(systemName: imageName)
 				.font(.title3)
-				.frame(width: 30, height: 10, alignment: .center)
+				.frame(width: 30, height: 41, alignment: .center)
 				.foregroundColor(.red)
 			Text(text)
+				.font(.title2)
 				.foregroundColor(.primary)
 		}
-	}
-}
-
-struct LibraryView_Previews: PreviewProvider {
-	static var previews: some View {
-		LibraryView()
 	}
 }
