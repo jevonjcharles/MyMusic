@@ -19,11 +19,14 @@ struct AppView: View {
 //	}
 
 	var body: some View {
-		TranslucentTabView {
+		TabView {
 			LibraryView()
-				.ignoresSafeArea()
+				.tabItem {
+					Label("Library", systemImage: "rectangle.stack.fill")
+				}
 //				.environmentObject(musicKitService)
 		}
+		.accentColor(.red)
 //		.alert(isPresented: $alertViewModel.isPresented) {
 //			alertViewModel.alert
 //		}
@@ -33,6 +36,5 @@ struct AppView: View {
 struct AppView_Previews: PreviewProvider {
 	static var previews: some View {
 		AppView()
-			.preferredColorScheme(.light)
 	}
 }

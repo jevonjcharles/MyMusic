@@ -9,9 +9,9 @@ import Foundation
 import Combine
 import StoreKit
 
-
-
-//class MusicKitService: ObservableObject {
+struct MediaPlayerService {
+	
+}
 //	private var cancellables = Set<AnyCancellable>()
 //	private var userToken: String?
 //	private weak var alertViewModel: AlertViewModel?
