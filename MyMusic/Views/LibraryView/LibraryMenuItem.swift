@@ -7,17 +7,16 @@
 
 import SwiftUI
 
-struct LibraryMenuItem: View {
-	var imageName: String
-	var text: String
+struct MenuRowView: View {
+	@ObservedObject var menuItem: MenuItem
 
 	var body: some View {
 		HStack {
-			Image(systemName: imageName)
+			Image(systemName: menuItem.unwrappedImageName)
 				.font(.title2)
 				.frame(width: 30, height: 41, alignment: .center)
 				.foregroundColor(.red)
-			Text(text)
+			Text(menuItem.unwrappedTitle)
 				.font(.title2)
 				.foregroundColor(.primary)
 		}

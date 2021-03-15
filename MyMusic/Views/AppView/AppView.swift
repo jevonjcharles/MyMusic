@@ -18,6 +18,8 @@ struct AppView: View {
 //		_alertViewModel = StateObject(wrappedValue: alertViewModel)
 //	}
 
+	@StateObject var coreDataStack = CoreDataStack()
+
 	var body: some View {
 		TabView {
 			LibraryView()
@@ -27,6 +29,8 @@ struct AppView: View {
 //				.environmentObject(musicKitService)
 		}
 		.accentColor(.red)
+		.environmentObject(coreDataStack)
+		.environment(\.managedObjectContext, coreDataStack.viewContext)
 //		.alert(isPresented: $alertViewModel.isPresented) {
 //			alertViewModel.alert
 //		}

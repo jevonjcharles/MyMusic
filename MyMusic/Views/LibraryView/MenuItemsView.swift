@@ -8,21 +8,33 @@
 import SwiftUI
 
 struct MenuItemsView: View {
-	private var menuItems = [
-		("Playlists", "music.note.list"),
-		("Artists", "music.mic"),
-		("Albums", "rectangle.stack"),
-		("Songs", "music.note"),
-		("Genres", "guitars"),
-		("Downloaded", "arrow.down.circle")
-	]
+	@Binding var isExpended: Bool
+	@FetchRequest(entity: MenuItem.entity(),
+								sortDescriptors: [NSSortDescriptor(keyPath: \MenuItem.type, ascending: true)],
+								predicate: NSPredicate(format: "isViewable == %@", NSNumber(value: true)),
+								animation: .spring())
+	private var viewableMenuItems: FetchedResults<MenuItem>
 
-    var body: some View {
-			ForEach(menuItems, id: \.self.0) { item in
-				NavigationLink(destination: Text(item.0)) {
-					LibraryMenuItem(imageName: item.1, text: item.0)
+	@FetchRequest(entity: MenuItem.entity(),
+								sortDescriptors: [NSSortDescriptor(keyPath: \MenuItem.type, ascending: true)],
+								predicate: nil,
+								animation: .spring())
+	private var menuItems: FetchedResults<MenuItem>
+
+	@State private var selectedItems = Set<MenuItem>()
+
+	var body: some View {
+		if isExpended {
+			List(menuItems, selection: $selectedItems) { item in
+				Text(item.unwrappedTitle)
+			}
+		} else {
+			ForEach(viewableMenuItems) { item in
+				NavigationLink(destination: Text(item.unwrappedTitle)) {
+					MenuRowView(menuItem: item)
 				}
 			}
-    }
+		}
+	}
 }
 

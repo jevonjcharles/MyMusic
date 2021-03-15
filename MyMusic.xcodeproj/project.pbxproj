@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A632A02625FD241E00D5D4C0 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A632A02525FD241E00D5D4C0 /* MenuItem.swift */; };
+		A632A02B25FD265700D5D4C0 /* MyMusic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A632A02925FD265700D5D4C0 /* MyMusic.xcdatamodeld */; };
+		A632A02E25FD282100D5D4C0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A632A02D25FD282100D5D4C0 /* CoreDataStack.swift */; };
 		A669D19825FAF57100DD6F6A /* MediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A669D19725FAF57100DD6F6A /* MediaItem.swift */; };
 		A669D19D25FAF5C700DD6F6A /* MediaCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A669D19C25FAF5C700DD6F6A /* MediaCollection.swift */; };
 		A669D1A025FAF5DE00DD6F6A /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = A669D19F25FAF5DE00DD6F6A /* Song.swift */; };
@@ -18,6 +21,10 @@
 		A669D1B325FC106C00DD6F6A /* ArtworkSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A669D1B225FC106C00DD6F6A /* ArtworkSize.swift */; };
 		A67DC05D25EFEFF700D85787 /* MPMediaItemCollection+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DC05C25EFEFF700D85787 /* MPMediaItemCollection+.swift */; };
 		A67DC06525F0155200D85787 /* LibraryMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67DC06425F0155200D85787 /* LibraryMenuItem.swift */; };
+		A6AD6AE025FED95E00B153B0 /* MenuItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AD6ADF25FED95E00B153B0 /* MenuItem+.swift */; };
+		A6AD6AE325FEDA6700B153B0 /* MenuType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AD6AE225FEDA6700B153B0 /* MenuType.swift */; };
+		A6AD6AE625FEDDD800B153B0 /* MenuEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AD6AE525FEDDD800B153B0 /* MenuEditButton.swift */; };
+		A6AD6AE925FEEBBF00B153B0 /* MenuItemsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AD6AE825FEEBBF00B153B0 /* MenuItemsListView.swift */; };
 		A6B8402E25E9BE0D00140DD3 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8402D25E9BE0D00140DD3 /* LibraryViewModel.swift */; };
 		A6B8403325E9BF5800140DD3 /* MusicKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8403225E9BF5800140DD3 /* MusicKitService.swift */; };
 		A6B8403925EA8EF400140DD3 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8403825EA8EF400140DD3 /* AlertViewModel.swift */; };
@@ -45,6 +52,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A632A02525FD241E00D5D4C0 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		A632A02A25FD265700D5D4C0 /* MyMusic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyMusic.xcdatamodel; sourceTree = "<group>"; };
+		A632A02D25FD282100D5D4C0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		A669D19725FAF57100DD6F6A /* MediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaItem.swift; sourceTree = "<group>"; };
 		A669D19C25FAF5C700DD6F6A /* MediaCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCollection.swift; sourceTree = "<group>"; };
 		A669D19F25FAF5DE00DD6F6A /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
@@ -56,6 +66,10 @@
 		A669D1B225FC106C00DD6F6A /* ArtworkSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkSize.swift; sourceTree = "<group>"; };
 		A67DC05C25EFEFF700D85787 /* MPMediaItemCollection+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPMediaItemCollection+.swift"; sourceTree = "<group>"; };
 		A67DC06425F0155200D85787 /* LibraryMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryMenuItem.swift; sourceTree = "<group>"; };
+		A6AD6ADF25FED95E00B153B0 /* MenuItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuItem+.swift"; sourceTree = "<group>"; };
+		A6AD6AE225FEDA6700B153B0 /* MenuType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuType.swift; sourceTree = "<group>"; };
+		A6AD6AE525FEDDD800B153B0 /* MenuEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuEditButton.swift; sourceTree = "<group>"; };
+		A6AD6AE825FEEBBF00B153B0 /* MenuItemsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemsListView.swift; sourceTree = "<group>"; };
 		A6B8402D25E9BE0D00140DD3 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		A6B8403225E9BF5800140DD3 /* MusicKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicKitService.swift; sourceTree = "<group>"; };
 		A6B8403825EA8EF400140DD3 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
@@ -95,6 +109,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A632A02825FD263000D5D4C0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A632A02925FD265700D5D4C0 /* MyMusic.xcdatamodeld */,
+				A6AD6ADF25FED95E00B153B0 /* MenuItem+.swift */,
+				A632A02D25FD282100D5D4C0 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		A669D19625FAF56100DD6F6A /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				A669D1B225FC106C00DD6F6A /* ArtworkSize.swift */,
+				A6AD6AE225FEDA6700B153B0 /* MenuType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -115,6 +140,7 @@
 		A6B8402A25E9BDCF00140DD3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A6AD6AE525FEDDD800B153B0 /* MenuEditButton.swift */,
 				A6B840AE25EFE44600140DD3 /* MediaVGrid.swift */,
 				A669D1A825FAF7F900DD6F6A /* MediaCard.swift */,
 				A669D1AB25FAF9F600DD6F6A /* MediaDetailView.swift */,
@@ -148,6 +174,7 @@
 				A6B8409925EF3DFB00140DD3 /* Album.swift */,
 				A669D19F25FAF5DE00DD6F6A /* Song.swift */,
 				A669D1A225FAF5F600DD6F6A /* Playlist.swift */,
+				A632A02525FD241E00D5D4C0 /* MenuItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,6 +214,7 @@
 				A6EA9A9A25E98B6D00970123 /* LibraryView.swift */,
 				A67DC06425F0155200D85787 /* LibraryMenuItem.swift */,
 				A6B840A925EFE2B000140DD3 /* MenuItemsView.swift */,
+				A6AD6AE825FEEBBF00B153B0 /* MenuItemsListView.swift */,
 			);
 			path = LibraryView;
 			sourceTree = "<group>";
@@ -210,10 +238,11 @@
 		A6EA9A9725E98B6D00970123 /* MyMusic */ = {
 			isa = PBXGroup;
 			children = (
+				A6EA9A9825E98B6D00970123 /* MyMusicApp.swift */,
+				A632A02825FD263000D5D4C0 /* CoreData */,
 				A669D1B125FC105D00DD6F6A /* Enums */,
 				A669D19625FAF56100DD6F6A /* Protocols */,
 				A6B8408E25EF10C100140DD3 /* Services */,
-				A6EA9A9825E98B6D00970123 /* MyMusicApp.swift */,
 				A6B8404E25EAE72A00140DD3 /* Extensions */,
 				A6B8402C25E9BDDF00140DD3 /* Models */,
 				A6B8402B25E9BDD500140DD3 /* ViewModels */,
@@ -303,8 +332,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6AD6AE025FED95E00B153B0 /* MenuItem+.swift in Sources */,
 				A6B8406F25ED3FD700140DD3 /* History.swift in Sources */,
+				A632A02B25FD265700D5D4C0 /* MyMusic.xcdatamodeld in Sources */,
 				A67DC06525F0155200D85787 /* LibraryMenuItem.swift in Sources */,
+				A632A02E25FD282100D5D4C0 /* CoreDataStack.swift in Sources */,
 				A6B840AF25EFE44600140DD3 /* MediaVGrid.swift in Sources */,
 				A669D1A325FAF5F600DD6F6A /* Playlist.swift in Sources */,
 				A6EA9A9B25E98B6D00970123 /* LibraryView.swift in Sources */,
@@ -312,14 +344,17 @@
 				A6B8408125EDDD4400140DD3 /* Artwork.swift in Sources */,
 				A6B8408425EDDD5A00140DD3 /* PlayParams.swift in Sources */,
 				A6B8402E25E9BE0D00140DD3 /* LibraryViewModel.swift in Sources */,
+				A6AD6AE325FEDA6700B153B0 /* MenuType.swift in Sources */,
 				A669D19825FAF57100DD6F6A /* MediaItem.swift in Sources */,
 				A669D1A025FAF5DE00DD6F6A /* Song.swift in Sources */,
 				A6B8404125EAA6EC00140DD3 /* BlurTabView.swift in Sources */,
+				A6AD6AE925FEEBBF00B153B0 /* MenuItemsListView.swift in Sources */,
 				A669D1B325FC106C00DD6F6A /* ArtworkSize.swift in Sources */,
 				A6B8403C25EA9B9F00140DD3 /* AppView.swift in Sources */,
 				A6B8409D25EFE14F00140DD3 /* Bar.swift in Sources */,
 				A669D1A625FAF63C00DD6F6A /* Token.swift in Sources */,
 				A6B8407925EDD65B00140DD3 /* EndPoint.swift in Sources */,
+				A632A02625FD241E00D5D4C0 /* MenuItem.swift in Sources */,
 				A6B8407E25EDDD2D00140DD3 /* Attributes.swift in Sources */,
 				A669D1AF25FAFAD300DD6F6A /* ArtworkView.swift in Sources */,
 				A6EA9A9925E98B6D00970123 /* MyMusicApp.swift in Sources */,
@@ -332,6 +367,7 @@
 				A67DC05D25EFEFF700D85787 /* MPMediaItemCollection+.swift in Sources */,
 				A669D1AC25FAF9F600DD6F6A /* MediaDetailView.swift in Sources */,
 				A6B8407325EDD62600140DD3 /* APIService.swift in Sources */,
+				A6AD6AE625FEDDD800B153B0 /* MenuEditButton.swift in Sources */,
 				A6B8403325E9BF5800140DD3 /* MusicKitService.swift in Sources */,
 				A6B840A025EFE17F00140DD3 /* BlurView.swift in Sources */,
 				A6B8409A25EF3DFB00140DD3 /* Album.swift in Sources */,
@@ -524,6 +560,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A632A02925FD265700D5D4C0 /* MyMusic.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A632A02A25FD265700D5D4C0 /* MyMusic.xcdatamodel */,
+			);
+			currentVersion = A632A02A25FD265700D5D4C0 /* MyMusic.xcdatamodel */;
+			path = MyMusic.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A6EA9A8D25E98B6C00970123 /* Project object */;
 }

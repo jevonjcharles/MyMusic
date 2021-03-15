@@ -12,17 +12,20 @@ import MediaPlayer
 struct LibraryView: View {
 //	@EnvironmentObject var musicKitService: MusicKitService
 	@StateObject var libraryViewModel = LibraryViewModel()
+	@State var isExpended = false
 
 	var body: some View {
 		NavigationView {
 			List {
-				MenuItemsView()
-				MediaVGrid(items: $libraryViewModel.recentlyAdded)
+				MenuItemsView(isExpended: $isExpended)
+				if !isExpended {
+					MediaVGrid(items: $libraryViewModel.recentlyAdded)
+				}
 			}
 			.navigationTitle(Text("Library"))
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {
-					EditButton()
+					MenuEditButton(isExpended: $isExpended)
 				}
 			}
 		}
