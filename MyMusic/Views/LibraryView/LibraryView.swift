@@ -22,6 +22,7 @@ struct LibraryView: View {
 					MediaVGrid(items: $libraryViewModel.recentlyAdded)
 				}
 			}
+			.environment(\.editMode, .constant(isExpended ? EditMode.active : EditMode.inactive))
 			.navigationTitle(Text("Library"))
 			.toolbar {
 				ToolbarItem(placement: .primaryAction) {

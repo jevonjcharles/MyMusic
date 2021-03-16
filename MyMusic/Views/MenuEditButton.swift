@@ -12,7 +12,9 @@ struct MenuEditButton: View {
 
 	var body: some View {
 		Button(action: {
-			isExpended.toggle()
+			withAnimation {
+				isExpended.toggle()
+			}
 		}, label: {
 			Text("Edit")
 				.foregroundColor(.red)

@@ -39,6 +39,7 @@ final class CoreDataStack: ObservableObject {
 		container.viewContext.automaticallyMergesChangesFromParent = true
 		self.viewContext = container.viewContext
 
+		// Good for this portfolio app but in a real production app would use something else.
 		let hasAlreadyLaunched = UserDefaults.standard.bool(forKey: "hasAlreadyLaunched")
 		if !hasAlreadyLaunched {
 			print("First Launched")
@@ -56,6 +57,7 @@ final class CoreDataStack: ObservableObject {
 			item.imageName = type.imageName
 			item.title = type.description
 			item.type = type.rawValue
+			item.position = type.rawValue
 			switch type {
 				case .playlists: item.isViewable = true
 				case .artist: item.isViewable = true
