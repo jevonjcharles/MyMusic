@@ -8,17 +8,19 @@
 import Foundation
 import MediaPlayer
 
-struct Song: MediaItem, Identifiable {
+struct Song: MediaItem {
 	let id: MPMediaEntityPersistentID
 	let artistName: String
 	let albumTitle: String
 	let genre: String
+	var artwork: UIImage?
+
 	let title: String
 	let trackNumber: Int
 	let isExplicit: Bool
 	let isCloudItem: Bool
 	let playbackDuration: Int
-	var artwork: UIImage?
+	let storeID: String
 	var dateAdded: Date
 
 	init(mediaItem: MPMediaItem, albumTitle: String) {
@@ -31,6 +33,7 @@ struct Song: MediaItem, Identifiable {
 		dateAdded = mediaItem.dateAdded
 		isExplicit = mediaItem.isExplicitItem
 		isCloudItem = mediaItem.isCloudItem
+		storeID = mediaItem.playbackStoreID
 
 		if let duration = mediaItem.value(forKey: MPMediaItemPropertyPlaybackDuration) as? Double {
 			playbackDuration = Int(duration)

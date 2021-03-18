@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct MenuEditButton: View {
-	@Binding var isExpended: Bool
+	@ObservedObject var libraryViewModel: LibraryViewModel
 
 	var body: some View {
 		Button(action: {
 			withAnimation {
-				isExpended.toggle()
+				libraryViewModel.isExpended.toggle()
 			}
 		}, label: {
-			Text("Edit")
+			Text(libraryViewModel.buttonTitle)
 				.foregroundColor(.red)
 		})
 	}

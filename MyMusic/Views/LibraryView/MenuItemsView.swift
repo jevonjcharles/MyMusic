@@ -9,13 +9,7 @@ import SwiftUI
 
 struct MenuItemsView: View {
 	@EnvironmentObject var coreDataStack: CoreDataStack
-	@Binding var isExpended: Bool
-	@FetchRequest(entity: MenuItem.entity(),
-								sortDescriptors: [NSSortDescriptor(keyPath: \MenuItem.position, ascending: true)],
-								predicate: NSPredicate(format: "isViewable == %@", NSNumber(value: true)),
-								animation: .spring())
-	private var viewableMenuItems: FetchedResults<MenuItem>
-
+	@ObservedObject var libraryViewModel: LibraryViewModel
 	@FetchRequest(entity: MenuItem.entity(),
 								sortDescriptors: [NSSortDescriptor(keyPath: \MenuItem.position, ascending: true)],
 								predicate: nil,
@@ -24,15 +18,17 @@ struct MenuItemsView: View {
 	@State private var itemSelection: UUID? = nil
 
 	var body: some View {
-		ForEach(isExpended ? menuItems : viewableMenuItems) { item in
+		ForEach(libraryViewModel.viewable(menuItems)) { item in
 			NavigationLink(destination: Text(item.unwrappedTitle)) {
-				MenuRowView(menuItem: item, isExpended: $isExpended)
+				MenuRowView(menuItem: item, isExpended: $libraryViewModel.isExpended)
 			}
 			.onTapGesture {
 				item.isViewable.toggle()
 			}
 		}
-		.onMove(perform: move)
+		.onMove { source, destination in
+			libraryViewModel.move(menuItems, source: source, to: destination, andSave: coreDataStack.saveViewContext)
+		}
 	}
 
 	private func move( from source: IndexSet, to destination: Int) {

@@ -16,6 +16,7 @@ struct Playlist: MediaCollection {
 	let releaseDate: String
 	var artwork: UIImage?
 	var songs: [Song] = []
+	let storeID: String = ""
 
 	var dateAdded: Date {
 		songs.max(by: { $0.dateAdded < $1.dateAdded })?.dateAdded ?? Date()

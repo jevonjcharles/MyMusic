@@ -8,11 +8,12 @@
 import Foundation
 import MediaPlayer
 
-protocol MediaItem {
-	var id: MPMediaEntityPersistentID { get }
-	var albumTitle: String { get }
-	var artistName: String { get }
-	var genre: String { get }
+protocol MediaItem: Media {
+	var title: String { get }
+	var trackNumber: Int { get }
+	var isExplicit: Bool { get }
+	var isCloudItem: Bool { get }
+	var playbackDuration: Int { get }
+	var storeID: String { get }
 	var dateAdded: Date { get }
-	var artwork: UIImage? { get }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 import MediaPlayer
 
 struct MediaDetailView<T: MediaCollection>: View {
+	@EnvironmentObject var player: Player
 	var item: T
 	var playbackDuration: Int {
 		item.songs.map(\.playbackDuration).reduce(0, +) / 60
@@ -57,7 +58,8 @@ struct MediaDetailView<T: MediaCollection>: View {
 	}
 
 	private func play() {
-
+		print(#function)
+		player.queue(item.songs.map(\.storeID), and: true)
 	}
 
 	private func shuffle() {
@@ -106,38 +108,33 @@ struct Buttons: View {
 
 	var body: some View {
 		HStack(spacing: 20) {
-			Button(action: play, label: {})
-				.frame(height: 15)
-				.frame(maxWidth: .infinity)
+			Button(action: play, label: {
+				HStack {
+					Image(systemName: "play.fill")
+					Text("Play")
+						.fontWeight(.bold)
+				}
+				.foregroundColor(.red)
+			})
+			.frame(height: 15)
+			.frame(maxWidth: .infinity)
+			.padding()
+			.background(Color.gray.opacity(0.2))
+			.cornerRadius(8)
 
-				.padding()
-				.background(Color.gray)
-				.opacity(0.2)
-				.overlay(
-					HStack {
-						Image(systemName: "play.fill")
-						Text("Play")
-							.fontWeight(.bold)
-					}
-					.foregroundColor(.red)
-				)
-				.cornerRadius(8)
-
-			Button(action: shuffle, label: {})
-				.frame(height: 15)
-				.frame(maxWidth: .infinity)
-				.padding()
-				.background(Color.gray)
-				.opacity(0.2)
-				.overlay(
-					HStack {
-						Image(systemName: "shuffle")
-						Text("Shuffle")
-							.fontWeight(.bold)
-					}
-					.foregroundColor(.red)
-				)
-				.cornerRadius(8)
+			Button(action: shuffle, label: {
+				HStack {
+					Image(systemName: "shuffle")
+					Text("Shuffle")
+						.fontWeight(.bold)
+				}
+				.foregroundColor(.red)
+			})
+			.frame(height: 15)
+			.frame(maxWidth: .infinity)
+			.padding()
+			.background(Color.gray.opacity(0.2))
+			.cornerRadius(8)
 		}
 	}
 }

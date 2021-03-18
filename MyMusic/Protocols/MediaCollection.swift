@@ -8,7 +8,7 @@
 import Foundation
 import MediaPlayer
 
-protocol MediaCollection: MediaItem, Identifiable {
+protocol MediaCollection: Media {
 	var songs: [Song] { get set }
 	var releaseDate: String { get }
 }

@@ -19,13 +19,14 @@ struct AppView: View {
 //	}
 
 	@StateObject var coreDataStack = CoreDataStack()
-
+	@StateObject var player = Player()
 	var body: some View {
 		TabView {
 			LibraryView()
 				.tabItem {
 					Label("Library", systemImage: "rectangle.stack.fill")
 				}
+				.environmentObject(player)
 //				.environmentObject(musicKitService)
 		}
 		.accentColor(.red)
