@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct MediaVGrid<T: MediaCollection>: View {
-	@Binding var items: [T]
+struct AlbumGrid: View {
+	@Binding var albums: [Album]
 
 	private var columns: [GridItem] = [
 		GridItem(.fixed(180), spacing: 16),
@@ -22,15 +22,15 @@ struct MediaVGrid<T: MediaCollection>: View {
 			.padding(.top, 15)
 	}
 
-	init(items: Binding<[T]>) {
-		self._items = items
+	init(albums: Binding<[Album]>) {
+		self._albums = albums
 	}
-
+	
 	var body: some View {
 		LazyVGrid(columns: columns, alignment: .leading, spacing: 16, pinnedViews: [.sectionHeaders]) {
 			Section(header: headerText) {
-				ForEach(items, id: \.id) { item in
-						MediaCard(item: item)
+				ForEach(albums, id: \.id) { album in
+						AlbumCard(album: album)
 				}
 			}
 		}

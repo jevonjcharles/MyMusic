@@ -9,18 +9,15 @@ import Foundation
 import Combine
 import MediaPlayer
 
-final class Player: ObservableObject {
+final class MusicController: ObservableObject {
 	private let musicPlayer = MPMusicPlayerApplicationController.applicationQueuePlayer
 
-	public func queue(_ songs: [String], and startPlaying: Bool) {
+	public func queue(_ songs: [String]) {
 		musicPlayer.setQueue(with: songs)
-		musicPlayer.prepareToPlay()
-		if startPlaying {
-			play()
-		}
 	}
 
 	public func play() {
+		musicPlayer.prepareToPlay()
 		musicPlayer.play()
 	}
 }

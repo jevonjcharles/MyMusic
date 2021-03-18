@@ -14,6 +14,7 @@ struct Playlist: MediaCollection {
 	let genre: String
 	let artistName: String
 	let releaseDate: String
+	var playbackDuration: Int = 0
 	var artwork: UIImage?
 	var songs: [Song] = []
 	let storeID: String = ""

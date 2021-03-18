@@ -19,7 +19,7 @@ struct AppView: View {
 //	}
 
 	@StateObject var coreDataStack = CoreDataStack()
-	@StateObject var player = Player()
+	@StateObject var player = MusicController()
 	var body: some View {
 		TabView {
 			LibraryView()

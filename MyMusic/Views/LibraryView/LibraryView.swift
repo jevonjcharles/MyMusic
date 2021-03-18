@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import StoreKit
-import MediaPlayer
 
 struct LibraryView: View {
 	@StateObject var libraryViewModel = LibraryViewModel()
@@ -17,7 +15,7 @@ struct LibraryView: View {
 			List {
 				MenuItemsView(libraryViewModel: libraryViewModel)
 				if !libraryViewModel.isExpended {
-					MediaVGrid(items: $libraryViewModel.recentlyAdded)
+					AlbumGrid(albums: $libraryViewModel.recentlyAddedAlbums)
 				}
 			}
 			.environment(\.editMode, .constant(libraryViewModel.isExpended ? EditMode.active : EditMode.inactive))

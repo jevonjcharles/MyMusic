@@ -14,6 +14,7 @@ struct Album: MediaCollection, Identifiable {
 	let artistName: String
 	let genre: String
 	let releaseDate: String
+	var playbackDuration: Int = 0
 	var artwork: UIImage?
 	var songs: [Song] = []
 
@@ -26,7 +27,6 @@ struct Album: MediaCollection, Identifiable {
 		self.albumTitle = mediaItemCollection.items.first?.albumTitle ?? "Unknown"
 		self.artistName = mediaItemCollection.representativeItem?.albumArtist ?? "Unknown"
 		self.genre = mediaItemCollection.representativeItem?.genre ?? "Unknown"
-
 		if let date = mediaItemCollection.representativeItem?.releaseDate {
 			let formatter = DateFormatter()
 			formatter.dateFormat = "yyyy"
@@ -36,7 +36,7 @@ struct Album: MediaCollection, Identifiable {
 		}
 
 		self.songs = mediaItemCollection.items.map { Song(mediaItem: $0, albumTitle: self.albumTitle) }
-
+		playbackDuration = songs.map(\.playbackDuration).reduce(0, +) / 60
 		if let item = mediaItemCollection.representativeItem,
 			 let artwork = item.artwork,
 			 let image = artwork.image(at: artwork.bounds.size) {

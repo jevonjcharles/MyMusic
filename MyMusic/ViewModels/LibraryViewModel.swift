@@ -10,14 +10,14 @@ import SwiftUI
 import MediaPlayer
 
 class LibraryViewModel: ObservableObject {
-	@Published var recentlyAdded: [Album] = []
+	@Published var recentlyAddedAlbums: [Album] = []
 	@Published var isExpended = false
 	@Published var buttonTitle = "Edit"
 	private let cutoffDate = Calendar.current.date(byAdding: .year, value: -2, to: Date())!
 	private var cancellables = Set<AnyCancellable>()
 	
 	init() {
-		recentlyAdded = fetchRecentlyAdded()
+		recentlyAddedAlbums = fetchRecentlyAdded()
 
 		$isExpended
 			.receive(on: RunLoop.main)

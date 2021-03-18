@@ -7,28 +7,28 @@
 
 import SwiftUI
 
-struct MediaCard<T: MediaCollection>: View {
-	var item: T
+struct AlbumCard: View {
+	var album: Album
 	@State private var isActive = false
 
     var body: some View {
 			VStack(alignment: .leading) {
-				ArtworkView(artwork: item.artwork)
+				ArtworkView(artwork: album.artwork)
 
-				Text(item.albumTitle)
+				Text(album.albumTitle)
 					.foregroundColor(.primary)
 					.lineLimit(1)
-					.font(.body)
-				Text(item.artistName)
+					.font(.subheadline)
+				Text(album.artistName)
 					.foregroundColor(.secondary)
 					.lineLimit(1)
-					.font(.body)
+					.font(.subheadline)
 			}
 			.onTapGesture {
 				self.isActive = true
 			}
 			.background(
-				NavigationLink(destination: MediaDetailView(item: item), isActive: $isActive) {
+				NavigationLink(destination: AlbumDetailView(album: album), isActive: $isActive) {
 					EmptyView()
 				}
 			)
