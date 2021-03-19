@@ -34,6 +34,8 @@
 		A6AD6B1F2604066A00B153B0 /* ExplicitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AD6B1E2604066A00B153B0 /* ExplicitView.swift */; };
 		A6AD6B22260406EB00B153B0 /* AlbumFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AD6B21260406EB00B153B0 /* AlbumFooterView.swift */; };
 		A6AD6B2526040AA600B153B0 /* SongListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AD6B2426040AA600B153B0 /* SongListViewModel.swift */; };
+		A6AD6B382604377E00B153B0 /* MonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AD6B372604377E00B153B0 /* MonitorService.swift */; };
+		A6AD6B3C26043B1500B153B0 /* AlbumDetailToolBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AD6B3B26043B1500B153B0 /* AlbumDetailToolBarButton.swift */; };
 		A6B8402E25E9BE0D00140DD3 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8402D25E9BE0D00140DD3 /* LibraryViewModel.swift */; };
 		A6B8403325E9BF5800140DD3 /* MusicKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8403225E9BF5800140DD3 /* MusicKitService.swift */; };
 		A6B8403925EA8EF400140DD3 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8403825EA8EF400140DD3 /* AlertViewModel.swift */; };
@@ -88,6 +90,8 @@
 		A6AD6B1E2604066A00B153B0 /* ExplicitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplicitView.swift; sourceTree = "<group>"; };
 		A6AD6B21260406EB00B153B0 /* AlbumFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumFooterView.swift; sourceTree = "<group>"; };
 		A6AD6B2426040AA600B153B0 /* SongListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListViewModel.swift; sourceTree = "<group>"; };
+		A6AD6B372604377E00B153B0 /* MonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorService.swift; sourceTree = "<group>"; };
+		A6AD6B3B26043B1500B153B0 /* AlbumDetailToolBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailToolBarButton.swift; sourceTree = "<group>"; };
 		A6B8402D25E9BE0D00140DD3 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		A6B8403225E9BF5800140DD3 /* MusicKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicKitService.swift; sourceTree = "<group>"; };
 		A6B8403825EA8EF400140DD3 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				A6B8403225E9BF5800140DD3 /* MusicKitService.swift */,
+				A6AD6B372604377E00B153B0 /* MonitorService.swift */,
 				A6B8407225EDD62600140DD3 /* APIService.swift */,
 				A6AD6B0826015A3100B153B0 /* MusicController.swift */,
 			);
@@ -229,6 +234,7 @@
 		A6B840AD25EFE3B600140DD3 /* LibraryView */ = {
 			isa = PBXGroup;
 			children = (
+				A6AD6B3B26043B1500B153B0 /* AlbumDetailToolBarButton.swift */,
 				A669D1AB25FAF9F600DD6F6A /* AlbumDetailView.swift */,
 				A6AD6B1B2604055F00B153B0 /* CloudButton.swift */,
 				A6AD6B102603F8DB00B153B0 /* AlbumHeaderView.swift */,
@@ -363,6 +369,7 @@
 				A6B8406F25ED3FD700140DD3 /* History.swift in Sources */,
 				A6AD6B0C2603E4EF00B153B0 /* Media.swift in Sources */,
 				A632A02B25FD265700D5D4C0 /* MyMusic.xcdatamodeld in Sources */,
+				A6AD6B3C26043B1500B153B0 /* AlbumDetailToolBarButton.swift in Sources */,
 				A67DC06525F0155200D85787 /* LibraryMenuItem.swift in Sources */,
 				A632A02E25FD282100D5D4C0 /* CoreDataStack.swift in Sources */,
 				A6AD6B142603F9C800B153B0 /* AlbumDetailButton.swift in Sources */,
@@ -407,6 +414,7 @@
 				A6B8403325E9BF5800140DD3 /* MusicKitService.swift in Sources */,
 				A6B840A025EFE17F00140DD3 /* BlurView.swift in Sources */,
 				A6B8409A25EF3DFB00140DD3 /* Album.swift in Sources */,
+				A6AD6B382604377E00B153B0 /* MonitorService.swift in Sources */,
 				A6B8408725EDDD6E00140DD3 /* Payload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
