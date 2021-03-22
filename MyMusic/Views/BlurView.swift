@@ -2,7 +2,7 @@
 //  BlurView.swift
 //  MyMusic
 //
-//  Created by Jevon Charles on 3/3/21.
+//  Created by Jevon Charles on 3/20/21.
 //
 
 import SwiftUI

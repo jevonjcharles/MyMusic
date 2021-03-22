@@ -9,13 +9,23 @@ import SwiftUI
 
 struct ArtworkView: View {
 	var artwork: UIImage?
-	var size: ArtworkSize = .regular
+	var size: ArtworkSize
 	private var frame: CGFloat {
 		switch size {
+			case .small: return 50
 			case .regular: return 180
 			case .medium: return 280
 			case .large: return 450
 		}
+	}
+
+	init(song: Binding<Song?>? = nil, artwork: UIImage? = nil, size: ArtworkSize = .regular) {
+		if let songBinding = song, let unwrappedSong = songBinding.wrappedValue {
+			self.artwork = unwrappedSong.artwork
+		} else {
+			self.artwork = artwork
+		}
+		self.size = size
 	}
 
 	var body: some View {

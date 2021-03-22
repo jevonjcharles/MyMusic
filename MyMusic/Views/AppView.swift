@@ -21,19 +21,27 @@ struct AppView: View {
 	@StateObject var coreDataStack = CoreDataStack()
 	@StateObject var musicController = MusicController()
 	@StateObject var monitorService = MonitorService()
+	@State private var offset: CGFloat = 0
+
 	var body: some View {
-		TabView {
-			LibraryView()
-				.tabItem {
-					Label("Library", systemImage: "rectangle.stack.fill")
-				}
-//				.environmentObject(musicKitService)
+		GeometryReader { geometry in
+			TabView {
+				LibraryView()
+					.size()
+					.tabItem {
+						Label("Library", systemImage: "rectangle.stack.fill")
+					}
+				//				.environmentObject(musicKitService)
+			}
+			.accentColor(.red)
+			.environmentObject(coreDataStack)
+			.environmentObject(musicController)
+			.environmentObject(monitorService)
+			.environment(\.managedObjectContext, coreDataStack.viewContext)
+			.onPreferenceChange(SizePreferenceKey.self, perform: { offset = geometry.size.height - $0.height })
+			.overlay(NowPlayingView(offset: offset).environmentObject(musicController), alignment: .bottom)
 		}
-		.accentColor(.red)
-		.environmentObject(coreDataStack)
-		.environmentObject(musicController)
-		.environmentObject(monitorService)
-		.environment(\.managedObjectContext, coreDataStack.viewContext)
+
 //		.alert(isPresented: $alertViewModel.isPresented) {
 //			alertViewModel.alert
 //		}

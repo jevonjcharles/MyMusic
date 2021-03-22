@@ -10,8 +10,13 @@ import Combine
 final class SongListViewModel: ObservableObject {
 
 	public func queue(_ songs: [Song], from track: Int, with musicController: MusicController) {
-		let songsToQueue = songs.suffix(from: track - 1).map(\.storeID)
-		musicController.queue(songsToQueue)
-		musicController.play()
+		if songs.count == 1 {
+			musicController.queue(songs.map(\.storeID))
+			musicController.play()
+		} else {
+			let songsToQueue = songs.suffix(from: track - 1).map(\.storeID)
+			musicController.queue(songsToQueue)
+			musicController.play()
+		}
 	}
 }
