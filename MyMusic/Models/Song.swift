@@ -8,13 +8,12 @@
 import Foundation
 import MediaPlayer
 
-struct Song: MediaItem {
+struct Song: MediaItem, Equatable {
 	let id: MPMediaEntityPersistentID
 	let artistName: String
 	let albumTitle: String
 	let genre: String
 	var artwork: UIImage?
-
 	let title: String
 	let trackNumber: Int
 	let isExplicit: Bool

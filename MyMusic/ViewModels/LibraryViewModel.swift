@@ -18,7 +18,6 @@ class LibraryViewModel: ObservableObject {
 	
 	init() {
 		recentlyAddedAlbums = fetchRecentlyAdded()
-
 		$isExpended
 			.receive(on: RunLoop.main)
 			.sink {[weak self] bool in

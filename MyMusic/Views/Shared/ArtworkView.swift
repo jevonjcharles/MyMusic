@@ -37,6 +37,7 @@ struct ArtworkView: View {
 		} else {
 			Color.gray.frame(width: frame, height: frame, alignment: .center)
 				.cornerRadius(8)
+				.overlay(Image(systemName: "music.note"))
 		}
 	}
 }

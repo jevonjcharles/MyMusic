@@ -7,7 +7,7 @@
 
 import Combine
 
-final class SongListViewModel: ObservableObject {
+final class AlbumDetailViewModel: ObservableObject {
 
 	public func queue(_ songs: [Song], from track: Int, with musicController: MusicController) {
 		if songs.count == 1 {
@@ -18,5 +18,9 @@ final class SongListViewModel: ObservableObject {
 			musicController.queue(songsToQueue)
 			musicController.play()
 		}
+	}
+
+	public func download() {
+		
 	}
 }
