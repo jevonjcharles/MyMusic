@@ -97,22 +97,7 @@ extension AlbumDetailView {
 	private func songList() -> some View {
 		ForEach(album.songs) { song in
 			LazyVStack(alignment: .leading) {
-				HStack {
-					Text("\(song.trackNumber)")
-						.foregroundColor(.secondary)
-					Text(song.title)
-						.foregroundColor(.primary)
-						.padding(.leading, 10)
-					if song.isExplicit {
-						explicit()
-					}
-					Spacer()
-					if song.isCloudItem {
-						cloudButton()
-					}
-				}
-				.padding(.vertical, 6)
-				.padding(.horizontal, 20)
+				cellFor(song)
 				Divider()
 					.offset(x: 40, y: 0)
 			}
@@ -121,6 +106,30 @@ extension AlbumDetailView {
 				viewModel.queue(album.songs, from: song.trackNumber, with: musicController)
 			}
 		}
+	}
+
+	@ViewBuilder
+	private func cellFor(_ song: Song) -> some View {
+		HStack(alignment: .bottom) {
+			if musicController.song == song && musicController.playbackState == .playing {
+				BarsView()
+			} else {
+				Text("\(song.trackNumber)")
+					.foregroundColor(.secondary)
+			}
+			Text(song.title)
+				.foregroundColor(.primary)
+				.padding(.leading, 10)
+			if song.isExplicit {
+				explicit()
+			}
+			Spacer()
+			if song.isCloudItem {
+				cloudButton()
+			}
+		}
+		.padding(.vertical, 6)
+		.padding(.horizontal, 20)
 	}
 
 	@ViewBuilder

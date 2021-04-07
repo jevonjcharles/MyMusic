@@ -12,4 +12,5 @@ protocol MediaCollection: Media {
 	var songs: [Song] { get set }
 	var releaseDate: String { get }
 	var playbackDuration: Int { get	}
+	var isCloudItem: Bool { get }
 }

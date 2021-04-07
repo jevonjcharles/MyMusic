@@ -15,6 +15,9 @@ struct Playlist: MediaCollection {
 	let artistName: String
 	let releaseDate: String
 	var playbackDuration: Int = 0
+	var isCloudItem: Bool {
+		songs.allSatisfy({ $0.isCloudItem })
+	}
 	var artwork: UIImage?
 	var songs: [Song] = []
 	let storeID: String = ""
