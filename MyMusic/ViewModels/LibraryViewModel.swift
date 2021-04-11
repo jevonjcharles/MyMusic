@@ -11,42 +11,66 @@ import MediaPlayer
 
 class LibraryViewModel: ObservableObject {
 	@Published var recentlyAddedAlbums: [Album] = []
-	@Published var isExpended = false
-	@Published var buttonTitle = "Edit"
+	@Published var selectedMenuItems = Set<MenuItem>()
+	@Published var editMode: EditMode = .inactive
+	private let coreDataStack: CoreDataStack
 	private let cutoffDate = Calendar.current.date(byAdding: .year, value: -2, to: Date())!
 	private var cancellables = Set<AnyCancellable>()
 	
-	init() {
+	init(coreDataStack: CoreDataStack) {
+		self.coreDataStack = coreDataStack
 		recentlyAddedAlbums = fetchRecentlyAdded()
-		$isExpended
+
+		$editMode
 			.receive(on: RunLoop.main)
-			.sink {[weak self] bool in
-				guard let self = self else { return }
-				switch bool {
-					case true: self.buttonTitle = "Done"
-					case false: self.buttonTitle = "Edit"
+			.sink {[weak self] mode in
+				guard let self = self, mode == .inactive else { return }
+				self.coreDataStack.saveViewContext()
+			}.store(in: &cancellables)
+
+		$selectedMenuItems
+			.receive(on: RunLoop.main)
+			.sink { items in
+				items.forEach { item in
+					if !item.isViewable {
+						item.isViewable = true
+					}
 				}
-			}
-			.store(in: &cancellables)
+			}.store(in: &cancellables)
 	}
 }
 // MARK: - Public Functions
 extension LibraryViewModel {
-	public func viewable(_ menuItems: FetchedResults<MenuItem>) -> [MenuItem] {
-		if isExpended {
-			return Array(menuItems)
-		} else {
-			return menuItems.filter { $0.isViewable == true }
-		}
-	}
-
-	public func move(_ items: FetchedResults<MenuItem>, source: IndexSet, to destination: Int, andSave save: ()->Void) {
+	public func move(_ items: FetchedResults<MenuItem>, from source: IndexSet, to destination: Int) {
 		var revisedItems: [MenuItem] = items.map{ $0 }
 		revisedItems.move(fromOffsets: source, toOffset: destination)
 		for reverseIndex in stride(from: revisedItems.count - 1, through: 0, by: -1 ) {
 			revisedItems[reverseIndex].position = Int16(reverseIndex)
 		}
-		save()
+		coreDataStack.saveViewContext()
+	}
+
+	public func insert(_ menuItems: FetchedResults<MenuItem>) {
+		guard editMode == .inactive else { return }
+		menuItems
+			.filter { $0.isViewable }
+			.forEach { selectedMenuItems.insert($0) }
+	}
+
+	public func toggleEditMode() {
+		if editMode == .inactive {
+			editMode = .active
+		} else {
+			editMode = .inactive
+		}
+	}
+
+	public func set(_ menuItems: FetchedResults<MenuItem>) {
+		guard editMode == .active else { return }
+		let allItems = Set(menuItems)
+		let difference = selectedMenuItems.symmetricDifference(allItems)
+		difference.forEach { $0.isViewable = false }
+		coreDataStack.saveViewContext()
 	}
 }
 // MARK: - Private Functions

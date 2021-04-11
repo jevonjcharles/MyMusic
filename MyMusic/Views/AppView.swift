@@ -20,7 +20,7 @@ extension AppView {
 		GeometryReader { geometry in
 			ZStack {
 				TabView {
-					LibraryView()
+					LibraryView(coreDataStack: coreDataStack)
 						.size()
 						.tabItem {
 							Label("Library", systemImage: "rectangle.stack.fill")
