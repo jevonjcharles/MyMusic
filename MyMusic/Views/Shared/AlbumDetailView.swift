@@ -11,8 +11,9 @@ struct AlbumDetailView: View {
 	@EnvironmentObject var musicController: MusicController
 	@EnvironmentObject var monitorService: MonitorService
 	@StateObject var viewModel = AlbumDetailViewModel()
-	@State var isShowingSheet = false
-	@State var isShowingAlert = false
+	@State private var isShowingSheet = false
+	@State private var isShowingAlert = false
+	@State private var isPlaying = false
 	var album: Album
 }
 // Body
@@ -95,31 +96,31 @@ extension AlbumDetailView {
 extension AlbumDetailView {
 	@ViewBuilder
 	private func songList() -> some View {
-		ForEach(album.songs) { song in
+		ForEach(album.songs.indices) { index in
 			LazyVStack(alignment: .leading) {
-				cellFor(song)
+				cellFor(album.songs[index])
 				Divider()
 					.offset(x: 40, y: 0)
 			}
 			.contentShape(Rectangle())
 			.onTapGesture {
-				viewModel.queue(album.songs, from: song.trackNumber, with: musicController)
+				musicController.queue(album.songs, from: index)
 			}
 		}
 	}
 
 	@ViewBuilder
 	private func cellFor(_ song: Song) -> some View {
-		HStack(alignment: .bottom) {
-			if musicController.song == song && musicController.playbackState == .playing {
-				BarsView()
+		HStack(alignment: .lastTextBaseline) {
+			if musicController.song == song && (musicController.playbackState == .playing || musicController.playbackState == .paused) {
+				bars()
 			} else {
 				Text("\(song.trackNumber)")
 					.foregroundColor(.secondary)
 			}
 			Text(song.title)
 				.foregroundColor(.primary)
-				.padding(.leading, 10)
+				.padding(.leading, 2)
 			if song.isExplicit {
 				explicit()
 			}
@@ -152,6 +153,26 @@ extension AlbumDetailView {
 				.foregroundColor(.red)
 				.font(Font.subheadline.weight(.bold))
 		})
+	}
+
+	private var animation: Animation {
+		Animation
+			.linear(duration: Double.random(in: 0.2...0.7))
+			.repeatForever(autoreverses: true)
+			.delay(Double.random(in: 0.1...0.5))
+	}
+
+	@ViewBuilder
+	private func bars() -> some View {
+		HStack(alignment: .bottom, spacing: 1) {
+			ForEach(0...3, id: \.self) { _ in
+				Rectangle()
+					.fill(Color.red)
+					.scaleEffect(y: musicController.playbackState == .playing ? 2.8 : 1, anchor: .bottom)
+					.animation(musicController.playbackState == .playing ? animation : Animation.default)
+					.frame(width: 3, height: 3, alignment: .bottom)
+			}
+		}
 	}
 }
 // Footer

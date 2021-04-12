@@ -63,8 +63,8 @@ extension AppView {
 						.padding()
 					Spacer()
 					HStack(spacing: 20) {
-						button(action: { print("PLAY") }, imageName: musicController.playButtonImageName)
-						button(action: { print("NEXT") } , imageName: "forward.fill")
+						button(action: musicController.playOrPause, imageName: musicController.playButtonImageName)
+						button(action: musicController.skipToNextItem , imageName: "forward.fill")
 					}
 				}
 				.padding(.horizontal, 20)
@@ -78,9 +78,9 @@ extension AppView {
 	private func button(action: @escaping () -> Void, imageName: String) -> some View {
 		Button(action: action, label: {
 			Image(systemName: imageName)
-				.font(.title)
+				.font(.title2)
 				.foregroundColor(.primary)
-				.frame(width: 50, height: 50)
+				.frame(width: 30, height: 30)
 		})
 	}
 }

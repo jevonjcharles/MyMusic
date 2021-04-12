@@ -17,10 +17,6 @@ final class MusicController: ObservableObject {
 	private var musicPlayer = MPMusicPlayerApplicationController.applicationQueuePlayer
 	private var cancellables = Set<AnyCancellable>()
 
-	public func queue(_ songs: [String]) {
-		musicPlayer.setQueue(with: songs)
-	}
-
 	init() {
 		let center = NotificationCenter.default
 		center
@@ -42,7 +38,6 @@ final class MusicController: ObservableObject {
 			.map(\.playbackState)
 			.sink {[weak self] state in
 				guard let self = self else { return }
-				print(state.rawValue)
 				self.playbackState = state
 				if state == .playing {
 					self.playButtonImageName = "pause.fill"
@@ -56,12 +51,24 @@ final class MusicController: ObservableObject {
 		musicPlayer.currentPlaybackTime = 50
 	}
 
+	public func queue(_ songs: [String]) {
+		musicPlayer.setQueue(with: songs)
+	}
+	
+	public func queue(_ songs: [Song], from index: Int) {
+		let songsToQueue = songs
+			.suffix(from: index)
+			.map(\.storeID)
+		queue(songsToQueue)
+		play()
+	}
+
 	public func play() {
 		musicPlayer.prepareToPlay()
 		musicPlayer.play()
 	}
 
-	public func playPause() {
+	public func playOrPause() {
 		if playbackState == .playing {
 			musicPlayer.pause()
 		} else {
@@ -70,7 +77,6 @@ final class MusicController: ObservableObject {
 	}
 
 	public func skipToNextItem() {
-		print("NEXT")
 		musicPlayer.skipToNextItem()
 	}
 }
