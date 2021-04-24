@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct MyMusicApp: App {
+	let coreDataStack = CoreDataStack.shared
 
 	var body: some Scene {
 		WindowGroup {
 			AppView()
+				.environment(\.managedObjectContext, coreDataStack.viewContext)
 		}
 	}
 }

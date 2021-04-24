@@ -8,20 +8,13 @@
 import SwiftUI
 
 struct LibraryView: View {
-	@ObservedObject var coreDataStack: CoreDataStack
-	@StateObject private var viewModel: LibraryViewModel
-	@FetchRequest(entity: MenuItem.entity(), sortDescriptors: [])
+	@StateObject private var viewModel = LibraryViewModel()
+	@FetchRequest(sortDescriptors: [])
 	private var menuItems: FetchedResults<MenuItem>
 	private var columns: [GridItem] = [
 		GridItem(.fixed(180), spacing: 16),
 		GridItem(.fixed(180), spacing: 16)
 	]
-
-	init(coreDataStack: CoreDataStack) {
-		self.coreDataStack = coreDataStack
-		let viewModel = StateObject(wrappedValue: LibraryViewModel(coreDataStack: coreDataStack))
-		self._viewModel = viewModel
-	}
 }
 // Body
 extension LibraryView {

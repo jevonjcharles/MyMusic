@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A61E02D126349AE20099BE9A /* Presistentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61E02D026349AE20099BE9A /* Presistentable.swift */; };
 		A632A02625FD241E00D5D4C0 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A632A02525FD241E00D5D4C0 /* MenuItem.swift */; };
 		A632A02B25FD265700D5D4C0 /* MyMusic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A632A02925FD265700D5D4C0 /* MyMusic.xcdatamodeld */; };
 		A632A02E25FD282100D5D4C0 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A632A02D25FD282100D5D4C0 /* CoreDataStack.swift */; };
@@ -57,6 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A61E02D026349AE20099BE9A /* Presistentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presistentable.swift; sourceTree = "<group>"; };
 		A632A02525FD241E00D5D4C0 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		A632A02A25FD265700D5D4C0 /* MyMusic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyMusic.xcdatamodel; sourceTree = "<group>"; };
 		A632A02D25FD282100D5D4C0 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				A669D19725FAF57100DD6F6A /* MediaItem.swift */,
 				A669D19C25FAF5C700DD6F6A /* MediaCollection.swift */,
 				A6AD6B0B2603E4EF00B153B0 /* Media.swift */,
+				A61E02D026349AE20099BE9A /* Presistentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				A6B8403C25EA9B9F00140DD3 /* AppView.swift in Sources */,
 				A669D1A625FAF63C00DD6F6A /* Token.swift in Sources */,
 				A6394E1D2606B93500332A71 /* SizePreferenceKey.swift in Sources */,
+				A61E02D126349AE20099BE9A /* Presistentable.swift in Sources */,
 				A6B8407925EDD65B00140DD3 /* EndPoint.swift in Sources */,
 				A6394E262606C25E00332A71 /* SizeModifier.swift in Sources */,
 				A632A02625FD241E00D5D4C0 /* MenuItem.swift in Sources */,

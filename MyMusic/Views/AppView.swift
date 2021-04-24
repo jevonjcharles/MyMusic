@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AppView: View {
 	@Environment(\.colorScheme) var colorScheme
-	@StateObject var coreDataStack = CoreDataStack()
 	@StateObject var musicController = MusicController()
 	@StateObject var monitorService = MonitorService()
 	@State private var offset: CGFloat = 0
@@ -20,25 +19,17 @@ extension AppView {
 		GeometryReader { geometry in
 			ZStack {
 				TabView {
-					LibraryView(coreDataStack: coreDataStack)
+					LibraryView()
 						.size()
 						.tabItem {
 							Label("Library", systemImage: "rectangle.stack.fill")
 						}
 				}
 				.accentColor(.red)
-				.environmentObject(coreDataStack)
 				.environmentObject(musicController)
 				.environmentObject(monitorService)
-//				.environment(\.managedObjectContext, coreDataStack.viewContext)
-//				.onPreferenceChange(SizePreferenceKey.self, perform: { offset = geometry.size.height - $0.height })
-//				if musicController.song != nil {
-//					VStack {
-//						Spacer()
-//						nowPlaying()
-//					}
-//					.animation(.easeIn)
-//				}
+				.onPreferenceChange(SizePreferenceKey.self, perform: { offset = geometry.size.height - $0.height })
+				nowPlaying()
 			}
 		}
 		//		.alert(isPresented: $alertViewModel.isPresented) {
@@ -54,24 +45,29 @@ extension AppView {
 
 	@ViewBuilder
 	private func nowPlaying() -> some View {
-		VStack(alignment: .leading, spacing: 0) {
-			ZStack {
-				BlurView(effect: effect)
-				HStack(alignment: .center) {
-					ArtworkView(song: $musicController.song, size: .small)
-					Text(musicController.song?.title ?? "Unknown")
-						.padding()
-					Spacer()
-					HStack(spacing: 20) {
-						button(action: musicController.playOrPause, imageName: musicController.playButtonImageName)
-						button(action: musicController.skipToNextItem , imageName: "forward.fill")
+		if musicController.song != nil {
+			VStack {
+				Spacer()
+				VStack(alignment: .leading, spacing: 0) {
+					ZStack(alignment: .leading) {
+						BlurView(effect: effect)
+						HStack(alignment: .center) {
+							ArtworkView(song: $musicController.song, size: .small)
+							Text(musicController.song?.title ?? "Unknown")
+								.padding()
+							Spacer()
+							HStack(spacing: 20) {
+								button(action: musicController.playOrPause, imageName: musicController.playButtonImageName)
+								button(action: musicController.skipToNextItem , imageName: "forward.fill")
+							}
+						}
+						.padding(.horizontal, 20)
 					}
 				}
-				.padding(.horizontal, 20)
+				.frame(height: 66)
+				.offset(y: -offset)
 			}
 		}
-		.frame(height: 66)
-		.offset(y: -offset)
 	}
 
 	@ViewBuilder
@@ -87,6 +83,9 @@ extension AppView {
 
 struct AppView_Previews: PreviewProvider {
 	static var previews: some View {
+		let context = CoreDataStack.preview.viewContext
+
 		AppView()
+			.environment(\.managedObjectContext, context)
 	}
 }

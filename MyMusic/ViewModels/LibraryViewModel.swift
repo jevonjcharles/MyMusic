@@ -13,19 +13,17 @@ class LibraryViewModel: ObservableObject {
 	@Published var recentlyAddedAlbums: [Album] = []
 	@Published var selectedMenuItems = Set<MenuItem>()
 	@Published var editMode: EditMode = .inactive
-	private let coreDataStack: CoreDataStack
 	private let cutoffDate = Calendar.current.date(byAdding: .year, value: -2, to: Date())!
 	private var cancellables = Set<AnyCancellable>()
 	
-	init(coreDataStack: CoreDataStack) {
-		self.coreDataStack = coreDataStack
+	init() {
 		recentlyAddedAlbums = fetchRecentlyAdded()
 
 		$editMode
 			.receive(on: RunLoop.main)
-			.sink {[weak self] mode in
-				guard let self = self, mode == .inactive else { return }
-				self.coreDataStack.saveViewContext()
+			.sink { mode in
+				guard mode == .inactive else { return }
+				CoreDataStack.shared.saveViewContext()
 			}.store(in: &cancellables)
 
 		$selectedMenuItems
@@ -47,7 +45,7 @@ extension LibraryViewModel {
 		for reverseIndex in stride(from: revisedItems.count - 1, through: 0, by: -1 ) {
 			revisedItems[reverseIndex].position = Int16(reverseIndex)
 		}
-		coreDataStack.saveViewContext()
+		CoreDataStack.shared.saveViewContext()
 	}
 
 	public func insert(_ menuItems: FetchedResults<MenuItem>) {
@@ -70,7 +68,7 @@ extension LibraryViewModel {
 		let allItems = Set(menuItems)
 		let difference = selectedMenuItems.symmetricDifference(allItems)
 		difference.forEach { $0.isViewable = false }
-		coreDataStack.saveViewContext()
+		CoreDataStack.shared.saveViewContext()
 	}
 }
 // MARK: - Private Functions

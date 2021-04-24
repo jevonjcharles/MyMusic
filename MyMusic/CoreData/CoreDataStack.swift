@@ -8,23 +8,32 @@
 import Foundation
 import CoreData
 
-final class CoreDataStack: ObservableObject {
+struct CoreDataStack {
+	static let shared = CoreDataStack()
 	let container: NSPersistentCloudKitContainer
 	let scratchpadContext: NSManagedObjectContext
 	let viewContext: NSManagedObjectContext
 
-	init() {
-		container = NSPersistentCloudKitContainer(name: "MyMusic")
-		let defaultURL = NSPersistentCloudKitContainer.defaultDirectoryURL()
+	static var preview: CoreDataStack = {
+		CoreDataStack(inMemory: true)
+	}()
 
-		let privateStoreURL = defaultURL.appendingPathComponent("com.JevonCharles.MyMusic.Private.sqlite")
-		let privateStoreDescription = NSPersistentStoreDescription(url: privateStoreURL)
-		privateStoreDescription.configuration = "Private"
-		let privateOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.JevonCharles.MyMusic")
-		privateOptions.databaseScope = .private
-		privateStoreDescription.cloudKitContainerOptions = privateOptions
-		privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-		privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+	init(inMemory: Bool = false) {
+		container = NSPersistentCloudKitContainer(name: "MyMusic")
+
+		if inMemory {
+			container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+		} else {
+			let defaultURL = NSPersistentCloudKitContainer.defaultDirectoryURL()
+			let privateStoreURL = defaultURL.appendingPathComponent("com.JevonCharles.MyMusic.Private.sqlite")
+			let privateStoreDescription = NSPersistentStoreDescription(url: privateStoreURL)
+			privateStoreDescription.configuration = "Private"
+			let privateOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.JevonCharles.MyMusic")
+			privateOptions.databaseScope = .private
+			privateStoreDescription.cloudKitContainerOptions = privateOptions
+			privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+			privateStoreDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+		}
 
 		container.loadPersistentStores(completionHandler: { store, error in
 			if let error = error {
@@ -32,27 +41,28 @@ final class CoreDataStack: ObservableObject {
 			}
 		})
 
-		let scratchpadContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+		scratchpadContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 		scratchpadContext.parent = container.viewContext
-		self.scratchpadContext = scratchpadContext
-		container.viewContext.mergePolicy = NSMergeByPropertyStoreTrumpMergePolicy
-		container.viewContext.automaticallyMergesChangesFromParent = true
-		self.viewContext = container.viewContext
+		viewContext = container.viewContext
 
-		// Good for this portfolio app but in a real production app would use something else.
-		let hasAlreadyLaunched = UserDefaults.standard.bool(forKey: "hasAlreadyLaunched")
-		if !hasAlreadyLaunched {
-			print("First Launched")
+		if inMemory {
 			buildMenuItemsList()
-			UserDefaults.standard.set(true, forKey: "hasAlreadyLaunched")
 		} else {
-			print("Has Launched before")
+			// Good for this portfolio app but in a real production app would use something else.
+					let hasAlreadyLaunched = UserDefaults.standard.bool(forKey: "hasAlreadyLaunched")
+					if !hasAlreadyLaunched {
+						print("First Launched")
+						buildMenuItemsList()
+						UserDefaults.standard.set(true, forKey: "hasAlreadyLaunched")
+					} else {
+						print("Has Launched before")
+					}
 		}
 	}
 
 	private func buildMenuItemsList() {
 		MenuType.allCases.forEach { type in
-			let item = MenuItem(context: scratchpadContext)
+			let item = MenuItem(context: viewContext)
 			item.id = UUID()
 			item.imageName = type.imageName
 			item.title = type.description
@@ -72,7 +82,7 @@ final class CoreDataStack: ObservableObject {
 				case .homeSharing: item.isViewable = true
 			}
 		}
-		saveScratchContext()
+		saveViewContext()
 	}
 
 	public func saveScratchContext() {
