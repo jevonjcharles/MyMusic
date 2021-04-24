@@ -12,6 +12,7 @@ struct ArtworkView: View {
 	var size: ArtworkSize
 	private var frame: CGFloat {
 		switch size {
+			case .extraSmall: return 40
 			case .small: return 50
 			case .regular: return 180
 			case .medium: return 280

@@ -12,7 +12,11 @@ struct AlbumDetailToolBarButton: View {
 	var imageName: String
 
 	var body: some View {
-		Button(action: { flag.toggle() }, label:{
+		Button(action: {
+			withAnimation {
+				flag.toggle()
+			}
+		}, label:{
 			Image(systemName: imageName)
 				.frame(width: 27, height: 27)
 				.foregroundColor(.red)

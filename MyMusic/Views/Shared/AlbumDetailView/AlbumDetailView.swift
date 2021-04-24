@@ -34,6 +34,9 @@ extension AlbumDetailView {
 				toolBarButtons()
 			}
 		}
+		.sheet(isPresented: $isShowingSheet) {
+			OptionSheetView(isShowingSheet: $isShowingSheet)
+		}
 	}
 }
 // HeaderView

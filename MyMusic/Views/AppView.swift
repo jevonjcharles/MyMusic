@@ -30,15 +30,15 @@ extension AppView {
 				.environmentObject(coreDataStack)
 				.environmentObject(musicController)
 				.environmentObject(monitorService)
-				.environment(\.managedObjectContext, coreDataStack.viewContext)
-				.onPreferenceChange(SizePreferenceKey.self, perform: { offset = geometry.size.height - $0.height })
-				if musicController.song != nil {
-					VStack {
-						Spacer()
-						nowPlaying()
-					}
-					.animation(.easeIn)
-				}
+//				.environment(\.managedObjectContext, coreDataStack.viewContext)
+//				.onPreferenceChange(SizePreferenceKey.self, perform: { offset = geometry.size.height - $0.height })
+//				if musicController.song != nil {
+//					VStack {
+//						Spacer()
+//						nowPlaying()
+//					}
+//					.animation(.easeIn)
+//				}
 			}
 		}
 		//		.alert(isPresented: $alertViewModel.isPresented) {

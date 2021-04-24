@@ -8,5 +8,5 @@
 import Foundation
 
 enum ArtworkSize {
-	case small, regular, medium, large
+	case extraSmall, small, regular, medium, large
 }
